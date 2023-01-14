@@ -1,0 +1,11 @@
+arrow: Modified from Bakena Studio https://thenounproject.com/icon/arrow-button-3809812/
+
+nfc_tag: Andrew Forrester
+https://thenounproject.com/icon/nfc-phone-58069/
+
+active_icon: Modified from ibrandify
+https://thenounproject.com/icon/key-2960334/
+
+inactive_icon: Modified from ibrandify
+https://thenounproject.com/icon/key-2960334/
+

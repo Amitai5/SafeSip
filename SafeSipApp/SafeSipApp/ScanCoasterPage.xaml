@@ -3,18 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeSipApp.ScanCoasterPage"
              Title="Scan Coaster">
-    <VerticalStackLayout
+    <Grid
+     BackgroundColor="CornflowerBlue"
+     VerticalOptions="FillAndExpand"
+     HorizontalOptions="FillAndExpand">
+        
+        <VerticalStackLayout
         Spacing="25"
-        Padding="30,0"
+        Padding="30,30"
         VerticalOptions="Center"
         Loaded="VerticalStackLayout_Loaded">
 
-        <Image Source="nfc_tag.png" />
+            <Image Source="nfc_tag.png"/>
 
-        <Label HorizontalTextAlignment="Center"
+            <Label HorizontalTextAlignment="Center"
+               
                Text="Tap the coaster with your phone."
-               TextColor="#f7f7ff"
-               FontSize="16"/>
+               TextColor="#fff03d"
+               FontSize="32"/>
+        </VerticalStackLayout>
 
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

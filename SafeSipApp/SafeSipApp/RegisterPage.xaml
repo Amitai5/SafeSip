@@ -4,61 +4,69 @@
              x:Class="SafeSipApp.RegisterPage">
     <ContentPage.Content>
 
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <Grid
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            BackgroundColor="CornflowerBlue">
 
-            <Image
-                Source="banner_logo.png" />
+            <VerticalStackLayout
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
 
-            <StackLayout Spacing="20" Padding="10, 30">
-                <Entry  
-                    x:Name="FullNameEntry"
-                    Placeholder="Full Name"
-                    BackgroundColor="#495867"
-                    PlaceholderColor="AntiqueWhite"
-                    HorizontalTextAlignment="Center"
-                    FontSize="20"
-                    TextColor="#fac748"
-                    TextChanged="FullNameEntry_TextChanged" />
+                <Image
+                        MaximumHeightRequest="300"
+                        Source="banner_logo.png" />
 
-                <Entry
-                    x:Name="PersonalPhoneEntry"
-                    Placeholder="Personal Phone Number"
-                    BackgroundColor="#495867"
-                    PlaceholderColor="AntiqueWhite"
-                    HorizontalTextAlignment="Center"
-                    FontSize="20"
-                    TextColor="#fac748"
-                    MaxLength="10"
-                    Keyboard="Telephone"
-                    TextChanged="PersonalPhoneEntry_TextChanged" />
+                <StackLayout Spacing="20" Padding="10, 30">
+                    <Entry  
+                            x:Name="FullNameEntry"
+                            Placeholder="Full Name*"
+                            BackgroundColor="#37388e"
+                            PlaceholderColor="AntiqueWhite"
+                            HorizontalTextAlignment="Center"
+                            FontSize="20"
+                            TextColor="#fac748"
+                            TextChanged="FullNameEntry_TextChanged" />
 
-                <Entry
-                    x:Name="EmergnecyContactEntry"
-                    Placeholder="Emergency Contact Number"
-                    BackgroundColor="#495867"
-                    PlaceholderColor="AntiqueWhite"
-                    HorizontalTextAlignment="Center"
-                    FontSize="20"
-                    TextColor="#fac748"
-                    MaxLength="10"
-                    Keyboard="Telephone"
-                    TextChanged="EmergnecyContactEntry_TextChanged" />
-            </StackLayout>
+                    <Entry
+                            x:Name="PersonalPhoneEntry"
+                            Placeholder="Personal Phone Number*"
+                            BackgroundColor="#37388e"
+                            PlaceholderColor="AntiqueWhite"
+                            HorizontalTextAlignment="Center"
+                            FontSize="20"
+                            TextColor="#fac748"
+                            MaxLength="10"
+                            Keyboard="Telephone"
+                            TextChanged="PersonalPhoneEntry_TextChanged" />
 
-            <ImageButton
-                x:Name="NextButton"
-                Source="next.png"
-                HeightRequest="50"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Clicked="ImageButton_Clicked" />
+                    <Entry
+                            x:Name="EmergnecyContactEntry"
+                            Placeholder="Emergency Contact Number"
+                            BackgroundColor="#37388e"
+                            PlaceholderColor="AntiqueWhite"
+                            HorizontalTextAlignment="Center"
+                            FontSize="20"
+                            TextColor="#fac748"
+                            MaxLength="10"
+                            Keyboard="Telephone"
+                            TextChanged="EmergnecyContactEntry_TextChanged" />
 
+                </StackLayout>
 
+                <ImageButton
+                        x:Name="NextButton"
+                        Source="next.png"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        Clicked="ImageButton_Clicked" />
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
+
+        </Grid>
 
     </ContentPage.Content>
 </ContentPage>
