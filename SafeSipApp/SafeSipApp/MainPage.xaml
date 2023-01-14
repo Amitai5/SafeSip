@@ -1,61 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SafeSipApp.MainPage">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SafeSipApp.MainPage"
+             Title="MainPage">
+    <StackLayout Spacing="0" Loaded="VerticalStackLayout_Loaded">
 
-    <ScrollView BackgroundColor="CornflowerBlue">
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Center" Spacing="25" Padding="0,25,0,0">
+            <Label Text="Status: " HorizontalOptions="Start" FontSize="32" />
 
-            <Image
-                Source="banner_logo.png" />
+            <VerticalStackLayout>
+                <Image x:Name="StatusIcon" Source="inactive_icon.png" HeightRequest="50" HorizontalOptions="End" />
+                <Label x:Name="StatusLabel" Text="(Inactive)" HorizontalOptions="Start" FontSize="16" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
 
-            <!--No Tab Index options were found-->
-            <Entry  
-                x:Name="FullNameEntry"
-                Placeholder="Full Name"
-                BackgroundColor="#37388e"
-                PlaceholderColor="AntiqueWhite"
-                HorizontalTextAlignment="Center"
-                FontSize="20"
-                TextColor="#fff03d"
-                />
-            
-            <Entry
-                x:Name="PersonalPhoneEntry"
-                Placeholder="Personal Phone Number"
-                BackgroundColor="#37388e"
-                PlaceholderColor="AntiqueWhite"
-                HorizontalTextAlignment="Center"
-                FontSize="20"
-                TextColor="#fff03d"
-                Keyboard="Telephone"
-                />
+        <VerticalStackLayout VerticalOptions="CenterAndExpand">
+            <Button x:Name="StatusToggle" HeightRequest="250" WidthRequest="250" FontSize="32"
+                FontAttributes="Bold" TextColor="White" BackgroundColor="Green" Text="Activate" Clicked="StatusToggle_Clicked" />
 
-            <Entry
-                x:Name="EmergnecyContactEntry"
-                Placeholder="Emergency Contact Number"
-                BackgroundColor="#37388e"
-                PlaceholderColor="AntiqueWhite"
-                HorizontalTextAlignment="Center"
-                FontSize="20"
-                TextColor="#fff03d"
-                Keyboard="Telephone"
-                />
-
-            <ImageButton
-                Source="checkmark.png"
-                HeightRequest="50"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Clicked="ImageButton_Clicked"
-                />
-
-
-
+            <Label HorizontalTextAlignment="Center"
+               Text="You can also tap to activate/deactivate the coaster."
+               TextColor="#f7f7ff"
+               FontSize="16" 
+               Margin="40,5" />
         </VerticalStackLayout>
-    </ScrollView>
 
+
+    </StackLayout>
 </ContentPage>
