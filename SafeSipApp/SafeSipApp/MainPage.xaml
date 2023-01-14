@@ -3,37 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SafeSipApp.MainPage">
 
-    <ScrollView>
+    <ScrollView BackgroundColor="CornflowerBlue">
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
 
             <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                Source="banner_logo.png" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+            <!--No Tab Index options were found-->
+            <Entry  
+                x:Name="FullNameEntry"
+                Placeholder="Full Name"
+                BackgroundColor="#37388e"
+                PlaceholderColor="AntiqueWhite"
+                HorizontalTextAlignment="Center"
+                FontSize="20"
+                TextColor="#fff03d"
+                />
+            
+            <Entry
+                x:Name="PersonalPhoneEntry"
+                Placeholder="Personal Phone Number"
+                BackgroundColor="#37388e"
+                PlaceholderColor="AntiqueWhite"
+                HorizontalTextAlignment="Center"
+                FontSize="20"
+                TextColor="#fff03d"
+                Keyboard="Telephone"
+                />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            <Entry
+                x:Name="EmergnecyContactEntry"
+                Placeholder="Emergency Contact Number"
+                BackgroundColor="#37388e"
+                PlaceholderColor="AntiqueWhite"
+                HorizontalTextAlignment="Center"
+                FontSize="20"
+                TextColor="#fff03d"
+                Keyboard="Telephone"
+                />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            <ImageButton
+                Source="checkmark.png"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Clicked="ImageButton_Clicked"
+                />
+
+
 
         </VerticalStackLayout>
     </ScrollView>
