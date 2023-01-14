@@ -19,23 +19,26 @@ public partial class MainPage : ContentPage
 
 	private void ToggleStatus()
 	{
+		string active_color = "#ed2024";
+		string inactive_color = "#37388e";
+
 		active = !active;
 		if (active)
 		{
-			StatusToggle.BackgroundColor = new Color(255, 0, 0);
-			StatusLabel.BackgroundColor = new Color(255, 0, 0);
-			StatusIcon.Source = "active_icon.png";
+			StatusToggle.BackgroundColor = Color.FromArgb(active_color);
 			StatusToggle.Text = "Deactivate";
-			StatusLabel.Text = "(Active)";
+			StatusText.Text = "Active";
+			StatusText.TextColor= Color.FromArgb(active_color);
+            StatusIcon.Source = "active_icon.png";
 			SQLDB.Instance.SetActive();
 		}
 		else
 		{
-			StatusLabel.BackgroundColor = Color.FromHex("#ff00000");
-			StatusToggle.BackgroundColor = new Color(0, 255, 0);
-			StatusIcon.Source = "inactive_icon.png";
-			StatusLabel.Text = "(Inactive)";
-			StatusToggle.Text = "Activate";
+            StatusToggle.BackgroundColor = Color.FromArgb(inactive_color);
+            StatusToggle.Text = "Activate";
+            StatusText.TextColor = Color.FromArgb(inactive_color);
+            StatusText.Text = "Inactive";
+            StatusIcon.Source = "inactive_icon.png";
 			SQLDB.Instance.SetInctive();
 		}
 	}

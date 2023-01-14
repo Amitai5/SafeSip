@@ -4,28 +4,56 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="SafeSipApp.MainPage"
              Title="MainPage">
-    <StackLayout Spacing="0" Loaded="VerticalStackLayout_Loaded">
 
-        <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="Center" Spacing="25" Padding="0,25,0,0">
-            <Label Text="Status: " HorizontalOptions="Start" FontSize="32" />
+    <Grid 
+     Loaded="VerticalStackLayout_Loaded"
+     BackgroundColor="CornflowerBlue"
+     VerticalOptions="Fill"
+     HorizontalOptions="Fill">
 
-            <VerticalStackLayout>
-                <Image x:Name="StatusIcon" Source="inactive_icon.png" HeightRequest="50" HorizontalOptions="End" />
-                <Label x:Name="StatusLabel" Text="(Inactive)" HorizontalOptions="Start" FontSize="16" />
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
+        <VerticalStackLayout
+             Padding="0,50,0,0"
+             HorizontalOptions="Center">
 
-        <VerticalStackLayout VerticalOptions="CenterAndExpand">
-            <Button x:Name="StatusToggle" HeightRequest="250" WidthRequest="250" FontSize="32"
-                FontAttributes="Bold" TextColor="White" BackgroundColor="Green" Text="Activate" Clicked="StatusToggle_Clicked" />
+            <Image 
+                 x:Name="StatusIcon" 
+                 Source="inactive_icon.png" 
+                 HeightRequest="50" 
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"/>
 
-            <Label HorizontalTextAlignment="Center"
-               Text="You can also tap to activate/deactivate the coaster."
-               TextColor="#f7f7ff"
-               FontSize="16" 
-               Margin="40,5" />
+            <Label 
+                x:Name="StatusText"
+                Text="Inactive" 
+                TextColor="#37388e"
+                HorizontalOptions="Center" 
+                FontSize="32" />
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout 
+         VerticalOptions="CenterAndExpand">
+
+            <Button 
+             x:Name="StatusToggle" 
+             HeightRequest="250" 
+             WidthRequest="250" 
+             FontSize="32"
+             FontAttributes="Bold" 
+             TextColor="White" 
+             BackgroundColor="#37388e" 
+             Text="Activate" 
+             Clicked="StatusToggle_Clicked" />
+
+            <Label 
+             HorizontalTextAlignment="Center"
+             Text="You can also tap the phone to the coaster to activate/deactivate."
+             TextColor="#f7f7f7"
+             FontSize="16" 
+             Margin="40,5" />
+
         </VerticalStackLayout>
 
 
-    </StackLayout>
+    </Grid>
 </ContentPage>
