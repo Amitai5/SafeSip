@@ -24,14 +24,15 @@ public partial class ScanCoasterPage : ContentPage
 			return;
 		}
 
-		int coasterID = Convert.ToInt32(tagInfo.Records[0].Message);
-		string errorMessage = SQLDB.Instance.LogIn(coasterID);
+		//TODO: REMOVE
+		//int coasterID = Convert.ToInt32(tagInfo.Records[0].Message);
+		//string errorMessage = SQLDB.Instance.LogIn(coasterID);
 
-		if (errorMessage != null)
-		{
-			await DisplayAlert("Log In Failed", errorMessage, "Ok");
-			return;
-		}
+		//if (errorMessage != null)
+		//{
+		//	await DisplayAlert("Log In Failed", errorMessage, "Ok");
+		//	return;
+		//}
 
 		scannedSuccessfully = true;
 		await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
