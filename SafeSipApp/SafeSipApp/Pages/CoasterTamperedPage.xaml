@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="SafeSipApp.MainPage"
-             Title="MainPage">
+             x:Class="SafeSipApp.Pages.CoasterTamperedPage"
+             Title="Warning!">
 
     <Grid 
-     Loaded="VerticalStackLayout_Loaded"
-     BackgroundColor="CornflowerBlue"
+     BackgroundColor="#ed2024"
      VerticalOptions="Fill"
      HorizontalOptions="Fill">
 
@@ -25,7 +23,7 @@
             <Label 
                 x:Name="StatusText"
                 Text="Inactive" 
-                TextColor="#37388e"
+                TextColor="#1575c5"
                 HorizontalOptions="Center" 
                 FontSize="32" />
 
@@ -40,20 +38,17 @@
              WidthRequest="250" 
              FontSize="32"
              FontAttributes="Bold" 
-             TextColor="White" 
-             BackgroundColor="#37388e" 
-             Text="Activate" 
-             Clicked="StatusToggle_Clicked" />
+             TextColor="#efe9e7" 
+             BackgroundColor="#4C4345" 
+             Text="Activate" />
 
             <Label 
              HorizontalTextAlignment="Center"
              Text="You can also tap the phone to the coaster to activate/deactivate."
-             TextColor="#f7f7f7"
+             TextColor="#efe9e7"
              FontSize="16" 
              Margin="40,5" />
 
         </VerticalStackLayout>
-
-
     </Grid>
 </ContentPage>

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Data.Common;
 
 namespace SafeSipApp
 {
@@ -8,7 +7,7 @@ namespace SafeSipApp
     {
         private readonly SqlConnection connection;
 
-        public SQLDB() 
+        public SQLDB()
         {
             connection = new SqlConnection("Server=tcp:safesip.database.windows.net,1433;Database=safesip;User ID=safesip-admin@safesip;Password=Cumstain45*;Trusted_Connection=False;Encrypt=True;");
         }
@@ -23,49 +22,45 @@ namespace SafeSipApp
         }
         private static SQLDB instance = null;
 
-        public string LogIn(int coasterID) 
+        public string LogIn(int coasterID)
         {
-            //TODO: REMOVE
-            AppInstance.Instance.CoasterID = 3;
-            AppInstance.Instance.UserID = 24;
-            return null;
+            SqlCommand cmd = new SqlCommand("usp_UserLogIn", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
 
+            cmd.Parameters.Add("@FullName", SqlDbType.VarChar).Value = AppInstance.Instance.FullName;
+            cmd.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = AppInstance.Instance.PersonalPhone;
+            cmd.Parameters.Add("@EmergencyPhoneNumber", SqlDbType.VarChar).Value = (object)AppInstance.Instance.EmergnecyContact ?? DBNull.Value;
+            cmd.Parameters.Add("@CoasterID", SqlDbType.Int).Value = coasterID;
+            AppInstance.Instance.CoasterID = coasterID;
 
-            //SqlCommand cmd = new SqlCommand("usp_UserLogIn", connection);
-            //cmd.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            SqlDataReader dataReader = cmd.ExecuteReader();
 
-            //cmd.Parameters.Add("@FullName", SqlDbType.VarChar).Value = AppInstance.Instance.FullName;
-            //cmd.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = AppInstance.Instance.PersonalPhone;
-            //cmd.Parameters.Add("@EmergencyPhoneNumber", SqlDbType.VarChar).Value = AppInstance.Instance.EmergnecyContact;
-            //cmd.Parameters.Add("@CoasterID", SqlDbType.Int).Value = coasterID;
-            //AppInstance.Instance.CoasterID = coasterID;
+            dataReader.Read();
+            string firstColumnName = dataReader.GetName(0);
+            if (firstColumnName != "ErrorCode")
+            {
+                int userID = dataReader.GetInt32(0);
+                AppInstance.Instance.UserID = userID;
+                _ = dataReader.DisposeAsync();
+                connection.Close();
+                return null;
+            }
 
-            //connection.Open();
-            //SqlDataReader dataReader = cmd.ExecuteReader();
-
-            //dataReader.Read();
-            //string firstColumnName = dataReader.GetName(0);
-            //if(firstColumnName != "ErrorCode")
-            //{
-            //    int userID = dataReader.GetInt32(0);
-            //    AppInstance.Instance.UserID = userID;
-            //    dataReader.Close();
-            //    connection.Close();
-            //    return null;
-            //}
-            //else
-            //{
-            //    string message = dataReader.GetString(1);
-            //    dataReader.Close();
-            //    connection.Close();
-            //    return message;
-            //}
+            string message = dataReader.GetString(1);
+            _ = dataReader.DisposeAsync();
+            connection.Close();
+            return message;
         }
 
         public string SetActive()
         {
-            SqlCommand cmd = new SqlCommand("usp_SetActive", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("usp_SetActive", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = AppInstance.Instance.UserID;
 
             connection.Open();
@@ -73,23 +68,23 @@ namespace SafeSipApp
 
             if (!dataReader.Read())
             {
-                dataReader.Close();
+                _ = dataReader.DisposeAsync();
                 connection.Close();
                 return null;
             }
-            else
-            {
-                string message = dataReader.GetString(1);
-                dataReader.Close();
-                connection.Close();
-                return message;
-            }
+
+            string message = dataReader.GetString(1);
+            _ = dataReader.DisposeAsync();
+            connection.Close();
+            return message;
         }
 
         public string SetInctive()
         {
-            SqlCommand cmd = new SqlCommand("usp_SetInactive", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("usp_SetInactive", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             cmd.Parameters.Add("@UserID", SqlDbType.VarChar).Value = AppInstance.Instance.UserID;
 
             connection.Open();
@@ -97,17 +92,15 @@ namespace SafeSipApp
 
             if (!dataReader.Read())
             {
-                dataReader.Close();
+                _ = dataReader.DisposeAsync();
                 connection.Close();
                 return null;
             }
-            else
-            {
-                string message = dataReader.GetString(1);
-                dataReader.Close();
-                connection.Close();
-                return message;
-            }
+
+            string message = dataReader.GetString(1);
+            _ = dataReader.DisposeAsync();
+            connection.Close();
+            return message;
         }
     }
 }
