@@ -14,13 +14,6 @@ namespace SafeSipAPI.Controllers
             _logger = logger;
         }
 
-
-        [HttpPost(Name = "SetCoasterTampered")]
-        public void SetCoasterTampered(int coasterID)
-        {
-            SQLDB.Instance.SetCoasterTampered(coasterID);
-        }
-
         [HttpGet(Name = "GetIsActive")]
         public bool GetIsActive(int coasterID)
         {
