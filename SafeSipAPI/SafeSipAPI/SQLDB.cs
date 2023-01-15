@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using SafeSipAPI.Model;
 using System.Data;
+using Twilio.Types;
 using Twilio;
 
 namespace SafeSipAPI
@@ -49,8 +50,12 @@ namespace SafeSipAPI
                 List<string> phoneNumbers = new List<string>();
                 for (int i = 2; i < dataReader.FieldCount; i++)
                 {
-                    string phoneNumber = dataReader.GetString(i).Trim();
-                    phoneNumbers.Add(phoneNumber);
+                    object? phoneNumber = dataReader.GetValue(i);
+
+                    if (phoneNumber != DBNull.Value)
+                    {
+                        phoneNumbers.Add(Convert.ToString(phoneNumber)!.Trim());
+                    }
                 }
 
                 messagesToSend = new SMSMessage(fullName, personalNumber, phoneNumbers);
@@ -59,6 +64,18 @@ namespace SafeSipAPI
             dataReader.Close();
             connection.Close();
             return messagesToSend;
+        }
+
+        public void ResetCoastersTampered()
+        {
+            SqlCommand cmd = new SqlCommand("usp_resetCoastersTamper", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

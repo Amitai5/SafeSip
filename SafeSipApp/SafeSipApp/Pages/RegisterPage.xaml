@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeSipApp.RegisterPage">
+    <ContentPage.Content>
+
+        <Grid
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            BackgroundColor="#221E1F">
+
+            <VerticalStackLayout
+                    Spacing="25"
+                    Padding="30,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+
+                <Image
+                    MaximumHeightRequest="300"
+                    Source="banner_logo.png" />
+
+                <StackLayout Spacing="20" Padding="10, 30">
+                    <Entry  
+                        x:Name="FullNameEntry"
+                        Placeholder="Full Name *"
+                        BackgroundColor="#4C4345"
+                        PlaceholderColor="#1575c5"
+                        HorizontalTextAlignment="Center"
+                        FontSize="20"
+                        TextColor="#efe9e7"
+                        ReturnType="Next"
+                        TextChanged="FullNameEntry_TextChanged" />
+
+                    <Entry
+                        x:Name="PersonalPhoneEntry"
+                        Placeholder="Personal Phone Number *"
+                        BackgroundColor="#4C4345"
+                        PlaceholderColor="#1575c5"
+                        HorizontalTextAlignment="Center"
+                        FontSize="20"
+                        TextColor="#efe9e7"
+                        MaxLength="13"
+                        Keyboard="Telephone"
+                        ReturnType="Next"
+                        TextChanged="PersonalPhoneEntry_TextChanged" />
+
+                    <Entry
+                        x:Name="EmergnecyContactEntry"
+                        Placeholder="Emergency Contact Number"
+                        BackgroundColor="#4C4345"
+                        PlaceholderColor="#1575c5"
+                        HorizontalTextAlignment="Center"
+                        FontSize="20"
+                        TextColor="#efe9e7"
+                        MaxLength="13"
+                        Keyboard="Telephone"
+                        TextChanged="EmergnecyContactEntry_TextChanged" />
+
+                </StackLayout>
+
+                <ImageButton
+                        x:Name="NextButton"
+                        Source="next.png"
+                        HeightRequest="80"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        Clicked="ImageButton_Clicked" />
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

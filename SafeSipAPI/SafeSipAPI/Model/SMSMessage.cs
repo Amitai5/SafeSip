@@ -1,7 +1,4 @@
-﻿using System.Net;
-using System.Net.Mail;
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
+﻿using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 
 namespace SafeSipAPI.Model
@@ -19,7 +16,7 @@ namespace SafeSipAPI.Model
             PersonalPhoneNumber= personal;
         }
 
-        public bool SendNow()
+        public void SendNow()
         {
             //Send Personal Text
             sendMessage(PersonalPhoneNumber, getPersonalString());
@@ -29,8 +26,6 @@ namespace SafeSipAPI.Model
             {
                 sendMessage(phoneNumber, GetStandardBody());
             }
-
-            return true;
         }
 
         private void sendMessage(string phoneNumber, string bodyText)

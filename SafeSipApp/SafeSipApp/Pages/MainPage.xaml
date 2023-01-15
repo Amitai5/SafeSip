@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SafeSipApp.MainPage"
+             Title="Safe Sip">
+
+    <Grid 
+     Loaded="VerticalStackLayout_Loaded"
+     BackgroundColor="#221E1F"
+     VerticalOptions="Fill"
+     HorizontalOptions="Fill">
+
+        <VerticalStackLayout
+             Padding="0,50,0,0"
+             HorizontalOptions="Center">
+
+            <Image 
+                 x:Name="StatusIcon" 
+                 Source="inactive_icon.png" 
+                 HeightRequest="50" 
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"/>
+
+            <Label 
+                x:Name="StatusText"
+                Text="Inactive" 
+                TextColor="#1575c5"
+                HorizontalOptions="Center" 
+                FontSize="32" />
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout 
+         VerticalOptions="CenterAndExpand">
+
+            <Button 
+             x:Name="StatusToggle" 
+             HeightRequest="250" 
+             WidthRequest="250" 
+             FontSize="32"
+             FontAttributes="Bold" 
+             TextColor="#efe9e7" 
+             BackgroundColor="#4C4345" 
+             Text="Activate" 
+             Clicked="StatusToggle_Clicked" />
+
+            <Label 
+             HorizontalTextAlignment="Center"
+             Text="You can also tap the phone to the coaster to activate/deactivate."
+             TextColor="#efe9e7"
+             FontSize="16" 
+             Margin="40,5" />
+
+        </VerticalStackLayout>
+
+
+    </Grid>
+</ContentPage>

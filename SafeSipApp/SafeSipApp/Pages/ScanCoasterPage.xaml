@@ -4,7 +4,7 @@
              x:Class="SafeSipApp.ScanCoasterPage"
              Title="Scan Coaster">
     <Grid
-     BackgroundColor="CornflowerBlue"
+     BackgroundColor="#221E1F"
      VerticalOptions="FillAndExpand"
      HorizontalOptions="FillAndExpand">
         
@@ -19,7 +19,7 @@
             <Label HorizontalTextAlignment="Center"
                
                Text="Tap the coaster with your phone."
-               TextColor="#fff03d"
+               TextColor="#efe9e7"
                FontSize="32"/>
         </VerticalStackLayout>
 

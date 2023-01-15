@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Data.Common;
 
 namespace SafeSipApp
 {
@@ -8,7 +7,7 @@ namespace SafeSipApp
     {
         private readonly SqlConnection connection;
 
-        public SQLDB() 
+        public SQLDB()
         {
             connection = new SqlConnection("Server=tcp:safesip.database.windows.net,1433;Database=safesip;User ID=safesip-admin@safesip;Password=Cumstain45*;Trusted_Connection=False;Encrypt=True;");
         }
@@ -23,7 +22,7 @@ namespace SafeSipApp
         }
         private static SQLDB instance = null;
 
-        public string LogIn(int coasterID) 
+        public string LogIn(int coasterID)
         {
             SqlCommand cmd = new SqlCommand("usp_UserLogIn", connection)
             {
@@ -32,7 +31,7 @@ namespace SafeSipApp
 
             cmd.Parameters.Add("@FullName", SqlDbType.VarChar).Value = AppInstance.Instance.FullName;
             cmd.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = AppInstance.Instance.PersonalPhone;
-            cmd.Parameters.Add("@EmergencyPhoneNumber", SqlDbType.VarChar).Value = AppInstance.Instance.EmergnecyContact;
+            cmd.Parameters.Add("@EmergencyPhoneNumber", SqlDbType.VarChar).Value = (object)AppInstance.Instance.EmergnecyContact ?? DBNull.Value;
             cmd.Parameters.Add("@CoasterID", SqlDbType.Int).Value = coasterID;
             AppInstance.Instance.CoasterID = coasterID;
 
@@ -45,17 +44,15 @@ namespace SafeSipApp
             {
                 int userID = dataReader.GetInt32(0);
                 AppInstance.Instance.UserID = userID;
-                dataReader.Close();
+                _ = dataReader.DisposeAsync();
                 connection.Close();
                 return null;
             }
-            else
-            {
-                string message = dataReader.GetString(1);
-                dataReader.Close();
-                connection.Close();
-                return message;
-            }
+
+            string message = dataReader.GetString(1);
+            _ = dataReader.DisposeAsync();
+            connection.Close();
+            return message;
         }
 
         public string SetActive()
@@ -71,17 +68,15 @@ namespace SafeSipApp
 
             if (!dataReader.Read())
             {
-                dataReader.Close();
+                _ = dataReader.DisposeAsync();
                 connection.Close();
                 return null;
             }
-            else
-            {
-                string message = dataReader.GetString(1);
-                dataReader.Close();
-                connection.Close();
-                return message;
-            }
+
+            string message = dataReader.GetString(1);
+            _ = dataReader.DisposeAsync();
+            connection.Close();
+            return message;
         }
 
         public string SetInctive()
@@ -97,17 +92,15 @@ namespace SafeSipApp
 
             if (!dataReader.Read())
             {
-                dataReader.Close();
+                _ = dataReader.DisposeAsync();
                 connection.Close();
                 return null;
             }
-            else
-            {
-                string message = dataReader.GetString(1);
-                dataReader.Close();
-                connection.Close();
-                return message;
-            }
+
+            string message = dataReader.GetString(1);
+            _ = dataReader.DisposeAsync();
+            connection.Close();
+            return message;
         }
     }
 }
