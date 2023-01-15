@@ -8,11 +8,20 @@ from adafruit_circuitplayground import cp
 zBase = 0
 cp.pixels.brightness = 0.1
 
+
+thresh = 3
+
 active = True
 safe = True
 triggered = False
 
-thresh = 5
+trig = digitalio.DigitalInOut(board.A6)
+trig.switch_to_output()
+
+arm = digitalio.DigitalInOut(board.A7)
+arm.switch_to_input()
+
+
 
 def reset():
     armed = False
@@ -28,29 +37,20 @@ def getBaseRead():
 def setColor(r,g,b):
     cp.pixels.fill((r,g,b))
     cp.pixels.show()
-    
-def checkState():
-    # TODO check for 
-    print("checking...")
-
-def sendTriggered
-    # TODO Visit site
-    print("triggered")
-    
 
 zBase = getBaseRead()
+print(zBase)
 setColor(0,255,0)
 
 while True:
     if active:
         reading = cp.acceleration.z
-        # print(reading)
+        print(reading)
         if abs(zBase - reading) > thresh:
             # Triggered one-time stuff
             setColor(255,0,0)
             safe = False
             active = False
+            trig.value = True
 
-    # time.sleep(0.1)
-    print("test")
-    # time.sleep(0.1)
+    time.sleep(0.1)
