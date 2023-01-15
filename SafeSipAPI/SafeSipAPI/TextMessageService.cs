@@ -14,20 +14,20 @@ namespace SafeSipAPI
 
         private void DoWork(object? state)
         {
-            _logger.Log(LogLevel.Information, "Asking SQL for messages...");
+            //_logger.Log(LogLevel.Information, "Asking SQL for messages...");
             SMSMessage? message = SQLDB.Instance.GetTamperedMessage();
-            _logger.Log(LogLevel.Information, $"SQL responded with {message}");
+            //_logger.Log(LogLevel.Information, $"SQL responded with {message}");
 
             if (message == null) { return; }
             message.SendNow();
 
-            _logger.Log(LogLevel.Information, $"Sent message about {message.FullName} to {message.PersonalPhoneNumber}{Environment.NewLine}\n");
+            //_logger.Log(LogLevel.Information, $"Sent message about {message.FullName} to {message.PersonalPhoneNumber}{Environment.NewLine}\n");
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(1000));
-            _logger.Log(LogLevel.Information, "Starting up service...");
+            //_logger.Log(LogLevel.Information, "Starting up service...");
             return Task.CompletedTask;
         }
 

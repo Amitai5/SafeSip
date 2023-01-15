@@ -12,8 +12,4 @@
     <PackageReference Include="Twilio.AspNet.Core" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

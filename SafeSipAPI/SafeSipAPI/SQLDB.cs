@@ -77,5 +77,34 @@ namespace SafeSipAPI
             cmd.ExecuteNonQuery();
             connection.Close();
         }
+
+        public void SetCoasterTampered(int coasterID)
+        {
+            SqlCommand cmd = new SqlCommand("usp_CoasterTrigger", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.Add("@CoasterID", SqlDbType.Int).Value = coasterID;
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public bool GetIsActive(int coasterID)
+        {
+            SqlCommand cmd = new SqlCommand("usp_getActive", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.Add("@CoasterID", SqlDbType.Int).Value = coasterID;
+
+            connection.Open();
+            bool isActive = Convert.ToBoolean(cmd.ExecuteScalar());
+            connection.Close();
+            return isActive;
+        }
     }
 }
