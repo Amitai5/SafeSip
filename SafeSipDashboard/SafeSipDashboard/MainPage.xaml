@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SafeSipDashboard.Model"
+             x:Class="SafeSipDashboard.MainPage">
+
+    <!--Define data up top-->
+    <ContentPage.Resources>
+        <coaster:CoasterCollection x:Key="coasters"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+
+            <HorizontalStackLayout
+                Padding="10">
+
+                <Label
+                    VerticalOptions="Center"
+                    Padding="10,0,10,0"
+                    Text="ID">
+                </Label>
+
+                <Label
+                    VerticalOptions="Center"
+                    Padding="10,0,10,0"
+                    Text="Full Name">
+                </Label>
+
+                <Label
+                    VerticalOptions="Center"
+                    Padding="10,0,10,0"
+                    Text="Phone Number">
+                </Label>
+
+                <Label
+                    VerticalOptions="Center"
+                    Padding="10,0,10,0"
+                    Text="Emergency Contact">
+                </Label>
+
+            </HorizontalStackLayout>
+
+            <CollectionView
+            BackgroundColor="#37388e">
+
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type coaster:Coaster}">
+                        <coaster:Coaster
+                            ID="0"
+                            FullName="Steve Bannon"
+                            PhoneNumber="1234"
+                            EmergencyContact="5678"/>
+                        <coaster:Coaster
+                            ID="1"
+                            FullName="Karen Swanson"
+                            PhoneNumber="0987"
+                            EmergencyContact="6543"/>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate 
+                     x:DataType="coaster:Coaster">
+
+                        <HorizontalStackLayout
+                        Padding="10"
+                        HorizontalOptions="CenterAndExpand">
+
+                            <!--Binding means "There is a thing with this name
+                        somwhere else so I'll get it from there. Path="Name of thing"-->
+
+                            <Label
+                            VerticalOptions="Center"
+                            Padding="10,0,10,0">
+                                <Label.Text>
+                                    <Binding Path="ID"/>
+                                </Label.Text>
+                            </Label>
+
+                            <Label
+                            VerticalOptions="Center"
+                            Padding="10,0,10,0">
+                                <Label.Text>
+                                    <Binding Path="FullName"/>
+                                </Label.Text>
+                            </Label>
+
+                            <Label
+                            VerticalOptions="Center"
+                            Padding="10,0,10,0">
+                                <Label.Text>
+                                    <Binding Path="PhoneNumber"/>
+                                </Label.Text>
+                            </Label>
+
+                            <Label
+                            VerticalOptions="Center"
+                            Padding="10,0,10,0">
+                                <Label.Text>
+                                    <Binding Path="EmergencyContact"/>
+                                </Label.Text>
+                            </Label>
+
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
